@@ -16,12 +16,12 @@ MapNode::~MapNode() {
 
 
 
-Node *MapNode::findChild(const std::string &word) {
+Node *MapNode::findChild(const char word) {
     const auto it = children.find(word);
     if (it == children.end()) return nullptr;
     return it->second;
 }
-Node *MapNode::addChild(const std::string &word, const int mode) {
+Node *MapNode::addChild(const char word, const int mode) {
     auto new_node = new MapNode(word, mode);
     this->children.insert({word, new_node});
     return new_node;

@@ -9,17 +9,18 @@
 
 struct Node {
     int type = 0;
-    std::string value;
+    // std::string value;
+    char value = 0;
 
-    Node(std::string value, const int type) {
+    Node(const char value, const int type) {
         this->type = type;
-        this->value = std::move(value);
+        this->value = value;
     }
 
     virtual ~Node() = default;
 
-    virtual Node* addChild(const std::string& word, int mode) = 0;
-    virtual Node* findChild(const std::string& word) = 0;
+    virtual Node* addChild(char word, int mode) = 0;
+    virtual Node* findChild(char word) = 0;
 
     virtual void listChildren() const = 0;
     void display() const {
@@ -35,13 +36,13 @@ struct Node {
 
 
 struct MapNode final : Node {
-    std::unordered_map<std::string, MapNode*> children;
+    std::unordered_map<char, MapNode*> children;
 
-    explicit MapNode(const std::string& word, int mode=0) : Node(word, mode) {}
+    explicit MapNode(const char word, const int mode=0) : Node(word, mode) {}
     ~MapNode() override;
 
-    Node* findChild(const std::string &word) override;
-    Node* addChild(const std::string& word, const int mode) override;
+    Node* findChild(char word) override;
+    Node* addChild(char word, int mode) override;
 
     void listChildren() const override;
 };
@@ -52,11 +53,11 @@ struct ArrayNode final : Node {
     int children_counter = 0;
     ArrayNode* children[ALPHABET]{};
 
-    explicit ArrayNode(const std::string& word, int mode=0) : Node(word, mode) {}
+    explicit ArrayNode(const char word, const int mode=0) : Node(word, mode) {}
     ~ArrayNode() override;
 
-    Node* findChild(const std::string& word) override;
-    Node* addChild(const std::string& word, const int mode) override;
+    Node* findChild(char word) override;
+    Node* addChild(char word, int mode) override;
 
     void listChildren() const override;
 };

@@ -19,7 +19,7 @@ private:
     Node* root;
 public:
     T9_Trie() {
-        root = new MapNode("", 0);
+        root = new ArrayNode(0, 0);
     }
     ~T9_Trie();
 

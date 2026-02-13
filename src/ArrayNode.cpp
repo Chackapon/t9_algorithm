@@ -13,13 +13,13 @@ ArrayNode::~ArrayNode() {
 
 
 
-Node *ArrayNode::findChild(const std::string &word) {
+Node *ArrayNode::findChild(const char word) {
     for (int i = 0; i < this->children_counter; i++) {
         if (this->children[i]->value == word) return this->children[i];
     }
     return nullptr;
 }
-Node *ArrayNode::addChild(const std::string &word, const int mode) {
+Node *ArrayNode::addChild(const char word, const int mode) {
     this->children[ this->children_counter ] = new ArrayNode(word, mode);
     this->children_counter++;
     return children[ this->children_counter - 1 ];

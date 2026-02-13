@@ -10,12 +10,25 @@ T9_Trie::~T9_Trie() {
 }
 
 
+// Node *T9_Trie::getWordNode(Node *node, const std::string &word) {
+//     auto current_node = node;
+//
+//     for (int i = 0; i < word.length(); i++) {
+//         std::string word_chunk = word.substr(0, i + 1);
+//         current_node = current_node->findChild(word_chunk);
+//
+//         if (current_node == nullptr) {
+//             return nullptr;
+//         }
+//     }
+//     return current_node;
+// }
+
 Node *T9_Trie::getWordNode(Node *node, const std::string &word) {
     auto current_node = node;
 
     for (int i = 0; i < word.length(); i++) {
-        std::string word_chunk = word.substr(0, i + 1);
-        current_node = current_node->findChild(word_chunk);
+        current_node = current_node->findChild( word.at(i) );
 
         if (current_node == nullptr) {
             return nullptr;
@@ -24,22 +37,45 @@ Node *T9_Trie::getWordNode(Node *node, const std::string &word) {
     return current_node;
 }
 
+
+// void T9_Trie::addWord(Node *node, const std::string &word) {
+//     int node_type = 0;
+//     auto current_node = node;
+//     std::string word_chunk;
+//
+//     for (int i = 0; i < word.length(); i++) {
+//         if (i == word.length() - 1) node_type = 1;
+//         word_chunk += static_cast<char>(std::tolower(word.at(i)));
+//
+//
+//         auto word_chunk_node = current_node->findChild(word_chunk);
+//
+//
+//         if (word_chunk_node == nullptr) {
+//             word_chunk_node = current_node->addChild(word_chunk, node_type);
+//         }
+//         current_node = word_chunk_node;
+//     }
+// }
+
 void T9_Trie::addWord(Node *node, const std::string &word) {
     int node_type = 0;
     auto current_node = node;
-    std::string word_chunk;
+    // std::string word_chunk;
 
-    for (int i = 0; i < word.length(); i++) {
+    for (int i = 0; i < word.size(); i++) {
         if (i == word.length() - 1) node_type = 1;
-        word_chunk += static_cast<char>(std::tolower(word.at(i)));
+
+        const char letter = static_cast<char>(std::tolower(word.at(i)));
 
 
-        auto word_chunk_node = current_node->findChild(word_chunk);
-
-
+        auto word_chunk_node = current_node->findChild(letter);
+        //
+        //
         if (word_chunk_node == nullptr) {
-            word_chunk_node = current_node->addChild(word_chunk, node_type);
+        word_chunk_node = current_node->addChild(letter, node_type);
         }
         current_node = word_chunk_node;
     }
 }
+

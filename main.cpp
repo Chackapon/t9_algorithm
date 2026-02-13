@@ -29,13 +29,13 @@ void displayNode(const Node * node) {
 #define PROGRAM_NAME "T9"
 #endif
 
-int main(int argc, char** argv) {
+int main(const int argc, char** argv) {
     if (argc < 3) {
         std::cerr << "USAGE: ./PROGRAM_NAME <words_file> <keys_file>" << std::endl;
         exit(1);
     }
 
-    auto program = new Program();
+    const auto program = new Program();
     program->loadWordFile( argv[1] );
     program->loadKeysFiles( argv[2] );
     const std::string keypad_str = program->keypad.strKeypad();
@@ -91,5 +91,9 @@ int main(int argc, char** argv) {
         if (shut_down) break;
     }
 
+    delete program;
+    // char answer_char = '\0';
+    // std::cout << "Enter any key to end the program " << std::endl;
+    // std::cin >> answer_char;
     return 0;
 }

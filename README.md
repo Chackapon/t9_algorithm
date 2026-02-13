@@ -41,7 +41,7 @@ Użytkowa implementacja klasy Program. Program jest wywoływany na zasadzie:
 
 Najpierw następuje inicjalizacja obiektu Program razem z wczytaniem podanych plików tekstowych.
 Główną częścia programu jest pętla wyświetlająca tekstowa reprezentację klawiatury, wczytująca wpisane numery klawiszy i odpowiednio je obsługująca. Posiada (na razie wszyte w kod) specjalne klawisze:
-* * - odpowiada za przeglądanie zasugerowanych słów
-* # - czyszczenie wyszukiwania
-* 0 - kończy działanie programu
+* <span>*</span> - odpowiada za przeglądanie zasugerowanych słów
+* <span>#</span> - czyszczenie wyszukiwania
+* <span>0</span> - kończy działanie programu
 

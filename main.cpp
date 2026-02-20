@@ -43,38 +43,41 @@ int main(const int argc, char** argv) {
     char answer = '\0';
 
     std::list<std::string> suggestions = {};
-    auto suggestions_iterator = suggestions.begin();
+    std::list<std::string>::iterator suggestions_iterator;
 
     int suggestion_index = 1;
     bool shut_down = false;
 
-
-
     while (true) {
         system("clear");
 
-        std::cout << keypad_str << "Suggested word [" << suggestion_index-suggestions.empty() << "/" << suggestions.size() << "]: " << *suggestions_iterator << std::endl;
+        std::cout << keypad_str;
 
+        if (suggestions.empty()) {
+            std::cout << "No suggestions available" << std::endl;
+        } else {
+            std::cout << "Suggested word [" << suggestion_index << "/" << suggestions.size() << "]: " << *suggestions_iterator << std::endl;
+        }
 
         std::cout << "> ";
         std::cin >> answer; //2437
 
-
         switch (answer) {
             case '*':
-                suggestions_iterator++;
-                suggestion_index++;
+                if (!suggestions.empty()) {
+                    ++suggestions_iterator;
+                    ++suggestion_index;
 
-                if (suggestions_iterator == suggestions.end()) {
-                    suggestions_iterator = suggestions.begin();
-                    suggestion_index = 1;
+                    if (suggestions_iterator == suggestions.end()) {
+                        suggestions_iterator = suggestions.begin();
+                        suggestion_index = 1;
+                    }
                 }
                 break;
 
             case '#':
                 program->clearSearch();
-                suggestions = {};
-                suggestions_iterator = suggestions.begin();
+                suggestions.clear();
                 suggestion_index = 1;
                 break;
 
@@ -84,16 +87,15 @@ int main(const int argc, char** argv) {
 
             default:
                 suggestions = program->search(answer);
-                suggestions_iterator = suggestions.begin();
-                suggestion_index = 1;
+                if (!suggestions.empty()) {
+                    suggestions_iterator = suggestions.begin();
+                    suggestion_index = 1;
+                }
 
         }
         if (shut_down) break;
     }
 
     delete program;
-    // char answer_char = '\0';
-    // std::cout << "Enter any key to end the program " << std::endl;
-    // std::cin >> answer_char;
     return 0;
 }

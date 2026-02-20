@@ -17,7 +17,7 @@ std::unordered_set<std::string> crossProduct( std::unordered_set<std::string> wo
 
 std::list <std::string> Program::search(char key) {
 
-    std::unordered_set<std::string> letter_combos = crossProduct(this->previous_searches, this->keypad.getValues(key));
+    const std::unordered_set<std::string> letter_combos = crossProduct(this->previous_searches, this->keypad.getValues(key));
     const auto candidates = filterForCandidates(letter_combos);
     this->previous_searches = candidates;
 

@@ -20,12 +20,7 @@ SRC = $(MAIN).cpp \
       $(SRC_DIR)/Program.cpp \
       $(SRC_DIR)/KeyPad.cpp
 
-OBJ = main.o \
-      src/T9_Trie.o \
-      src/MapNode.o \
-      src/ArrayNode.o \
-      src/Program.o \
-      src/KeyPad.o
+OBJ = $(SRC:.cpp=.o)
 
 
 all: $(TARGET)
@@ -34,10 +29,10 @@ $(TARGET): $(OBJ)
 	$(CXX) $(OBJ) -o $(TARGET) $(LDFLAGS)
 
 main.o: main.cpp
-	$(CXX) $(CXXFLAGS) -c main.cpp -o main.o -DPROGRAM_NAME=$(TARGET)
+	$(CXX) $(CXXFLAGS) -c $< -o $@ -DPROGRAM_NAME=$(TARGET)
 
-%.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+$(SRC_DIR)/%.o: $(SRC_DIR)/%.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@ -DPROGRAM_NAME=$(TARGET)
 
 run: $(TARGET)
 	./$(TARGET) $(TXT_DIR)/$(WORDS) $(TXT_DIR)/$(KEYS)

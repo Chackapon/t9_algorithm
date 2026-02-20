@@ -33,8 +33,11 @@ all: $(TARGET)
 $(TARGET): $(OBJ)
 	$(CXX) $(OBJ) -o $(TARGET) $(LDFLAGS)
 
+main.o: main.cpp
+	$(CXX) $(CXXFLAGS) -c main.cpp -o main.o -DPROGRAM_NAME=$(TARGET)
+
 %.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@ -DPROGRAM_NAME=$(TARGET)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 run: $(TARGET)
 	./$(TARGET) $(TXT_DIR)/$(WORDS) $(TXT_DIR)/$(KEYS)

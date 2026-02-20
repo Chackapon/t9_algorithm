@@ -7,7 +7,7 @@ Zazwyczaj użytkownik musi nacisnąć klawisz odpowiednią ilość razy, aby uzy
 ## Jak działa T9?
 T9 polega na utworzeniu specjalnego drzewa przechowującego słowa. 
 Rozpoczynając od początkowego węzła o pustej wartości, do słowa można dotrzeć idąc wzdłuż kolejnych węzłów, które są coraz większymi fragmentami tego słowa.
-> "" -> "c" -> "ca" -> "cat"
+> "" > "c" > "ca" > "cat"
 
 Węzeł "ca" posiada jako dzieci węzeł każdego słowa, które zaczyna się na "ca".
 Każdy węzeł posiada dodatkowo flagę, czy jest słowem, czy jedynie fragmentem. Dzięki temu trafiając na węzeł "go" jesteśmy w stanie rozpoznać go jako słowo - mimo, że nie jest  liściem drzewa, jak większość innych słów.

@@ -6,6 +6,7 @@
 #define T9_NODES_H
 
 #include <iostream>
+#include <unordered_map>
 
 struct Node {
     int type = 0;

@@ -3,6 +3,7 @@
 //
 
 #include "KeyPad.h"
+#include <cmath>
 
 std::unordered_set<char> KeyPad::getValues(const char key) {
     auto it = buttons.find(key);

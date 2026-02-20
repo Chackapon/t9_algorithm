@@ -20,7 +20,12 @@ SRC = $(MAIN).cpp \
       $(SRC_DIR)/Program.cpp \
       $(SRC_DIR)/KeyPad.cpp
 
-OBJ = $(SRC:.cpp=.o)
+OBJ = main.o \
+      src/T9_Trie.o \
+      src/MapNode.o \
+      src/ArrayNode.o \
+      src/Program.o \
+      src/KeyPad.o
 
 
 all: $(TARGET)

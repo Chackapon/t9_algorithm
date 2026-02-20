@@ -28,7 +28,10 @@ all: $(TARGET)
 $(TARGET): $(OBJ)
 	$(CXX) $(OBJ) -o $(TARGET) $(LDFLAGS)
 
-%.o: %.cpp
+main.o: main.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@ -DPROGRAM_NAME=$(TARGET)
+
+$(SRC_DIR)/%.o: $(SRC_DIR)/%.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@ -DPROGRAM_NAME=$(TARGET)
 
 run: $(TARGET)

@@ -5,8 +5,8 @@
 
 #include <fstream>
 
-std::unordered_set<std::string> crossProduct( std::unordered_set<std::string> word_chunks, std::unordered_set<char> button_values ) {
-    std::unordered_set<std::string> result;
+std::set<std::string> crossProduct( const std::set<std::string>& word_chunks, const std::set<char>& button_values ) {
+    std::set<std::string> result;
     for (const auto& element_a : word_chunks) {
         for (const auto element_b : button_values) {
             result.insert(element_a + element_b);
@@ -17,7 +17,7 @@ std::unordered_set<std::string> crossProduct( std::unordered_set<std::string> wo
 
 std::list <std::string> Program::search(char key) {
 
-    const std::unordered_set<std::string> letter_combos = crossProduct(this->previous_searches, this->keypad.getValues(key));
+    const std::set<std::string> letter_combos = crossProduct(this->previous_searches, this->keypad.getValues(key));
     const auto candidates = filterForCandidates(letter_combos);
     this->previous_searches = candidates;
 
@@ -32,8 +32,8 @@ std::list <std::string> Program::search(char key) {
 }
 
 // TODO: make it a filter function
-std::unordered_set<std::string> Program::filterForCandidates(const std::unordered_set<std::string>& word_chunks) const {
-    std::unordered_set<std::string> word_candidates;
+std::set<std::string> Program::filterForCandidates(const std::set<std::string>& word_chunks) const {
+    std::set<std::string> word_candidates;
     for (const auto& e : word_chunks) {
         if (this->trie->wordExists(e)) {
             word_candidates.insert(e);
@@ -43,8 +43,8 @@ std::unordered_set<std::string> Program::filterForCandidates(const std::unordere
 }
 
 // TODO: make it a filter function
-std::unordered_set<std::string> Program::filterForRealWords(const std::unordered_set<std::string> &candidates) const {
-    std::unordered_set<std::string> results;
+std::set<std::string> Program::filterForRealWords(const std::set<std::string> &candidates) const {
+    std::set<std::string> results;
     for (const auto& e : candidates) {
         if (this->trie->getWordNode(e)->type == 1) results.insert(e);
     }
@@ -76,7 +76,7 @@ void Program::loadKeysFiles(const std::string &fileName) {
     }
 
     std::string line;
-    std::unordered_set<char> key_values;
+    std::set<char> key_values;
 
     while (!file.eof()) {
         getline(file, line);

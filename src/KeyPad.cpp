@@ -5,13 +5,13 @@
 #include "KeyPad.h"
 #include <cmath>
 
-std::unordered_set<char> KeyPad::getValues(const char key) {
+std::set<char> KeyPad::getValues(const char key) {
     auto it = buttons.find(key);
     if (it == buttons.end()) return {};
     return it->second;
 }
 
-void KeyPad::addButton(char key, const std::unordered_set<char> &values) {
+void KeyPad::addButton(char key, const std::set<char> &values) {
     if (max_values < values.size()) max_values = values.size();
     keys_list += key;
     buttons.insert({key, values});

@@ -8,11 +8,12 @@
 #include <unordered_set>
 #include <ranges>
 #include <iostream>
+#include <set>
 #include <unordered_map>
 
 
 class KeyPad {
-    std::unordered_map<char, std::unordered_set<char>> buttons;
+    std::unordered_map<char, std::set<char>> buttons;
     size_t max_values = 0;
     std::string keys_list;
 
@@ -20,8 +21,8 @@ class KeyPad {
 
 public:
 
-    std::unordered_set<char> getValues(char key);
-    void addButton(char key, const std::unordered_set<char>& values);
+    std::set<char> getValues(char key);
+    void addButton(char key, const std::set<char> &values);
 
     std::string strKeypad();
 };

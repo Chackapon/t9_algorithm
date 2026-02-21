@@ -17,9 +17,11 @@
 class Program {
     T9_Trie *trie;
 
-    std::unordered_set<std::string> previous_searches;
-    std::unordered_set<std::string> filterForRealWords(const std::unordered_set<std::string> &candidates) const;
-    std::unordered_set<std::string> filterForCandidates(const std::unordered_set<std::string>& word_chunks) const;
+    std::set<std::string> previous_searches;
+
+    std::set<std::string> filterForRealWords(const std::set<std::string> &candidates) const;
+
+    std::set<std::string> filterForCandidates(const std::set<std::string> &word_chunks) const;
 
 public:
     KeyPad keypad;
